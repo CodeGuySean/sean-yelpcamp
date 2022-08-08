@@ -9,4 +9,4 @@ const isLoggedModule = (req, res, next) => {
 }
 
 module.exports = isLoggedModule;
-console.log(module);
+// console.log(module);
