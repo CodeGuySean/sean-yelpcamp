@@ -24,7 +24,7 @@
                             </p>
                             <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>">View <%= campground.title %></a>
                         </div>
-                        <div class="card-footer border-10">
+                        <div class="card-footer">
                             <!-- first line of code is to show number of days if it is not 0, if it equal to 0, then hide it-->
                             <!-- second line of code is if the number is 0, it means Today, if number is 1, show "day", if number bigger than 1, show "days"-->
                             <small class="text-muted">Created <%= getDifferentDays(Date(), campground.createdAt) == 0 ? "" : getDifferentDays(Date(), campground.createdAt) %> 

@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") %>
 <link rel="stylesheet" href="/stylesheets/stars.css">
 <div class="row">
-    <div class="col-6">
+    <div class="col-md-6">
 
         <div id="campgroundCarousel" class="carousel slide" data-bs-ride="true">
             <div class="carousel-indicators">
@@ -68,7 +68,7 @@
           </div>
         </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <% if (currentUser) { %>
         <h2>Leave a review</h2>
         <form action="/campgrounds/<%= showCampground._id %>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
