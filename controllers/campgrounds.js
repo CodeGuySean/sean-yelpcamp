@@ -1,9 +1,36 @@
 const Campground = require("../models/campground");
 const { cloudinary } = require("../cloudinary");
 
+
+function getDifferentDays(nowDate, createDate) {
+    const date1 = new Date(nowDate);
+    const date2 = new Date(createDate);
+
+    // console.log(`date1 = ${date1}`);
+    // console.log(`date1 = ${date1.getTime()}`);
+    // console.log(`date2 = ${date2}`);
+    // console.log(`date2 = ${date2.getTime()}`);
+
+    const oneDay = 1000 * 60 * 60 * 24;
+    
+    const differentTime = date1.getTime() - date2.getTime();
+    // console.log(`date1 - date2 = ${differentTime}`);
+    // console.log(`OneDay = ${oneDay}`)
+
+    const differentDays = Math.round(differentTime / oneDay);
+    // console.log(`differentTime / oneDay = ${differentTime / oneDay}`);
+    // console.log(`differentDays = ${differentDays}`);
+
+    if(differentDays == -1) {
+        differentDays = 0;
+    }
+
+    return differentDays;
+}
+
 module.exports.index = async (req, res) => {
     const campgrounds = await Campground.find({});
-    res.render("campgrounds/index", { campgrounds });
+    res.render("campgrounds/index", { campgrounds, getDifferentDays });
 }
 
 module.exports.renderNewForm = (req, res) => {
@@ -35,7 +62,7 @@ module.exports.showCampground = async (req, res) => {
         req.flash("error", "No such campground!");
         return res.redirect("/campgrounds");
     }
-    res.render("campgrounds/show", { showCampground });
+    res.render("campgrounds/show", { showCampground, getDifferentDays });
 }
 
 module.exports.renderEditForm = async (req, res) => {
@@ -70,3 +97,4 @@ module.exports.deleteCampground = async (req, res) => {
     req.flash("success", "Successfully Deleted a campground!");
     res.redirect("/campgrounds")
 }
+

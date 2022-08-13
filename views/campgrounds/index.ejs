@@ -2,7 +2,7 @@
     <h1>All Campgrounds</h1>
     <div><a href="/campgrounds/new">Add New Campground</a></div>
         <% for (let campground of campgrounds) { %>
-        <div class="card" mb-3>
+        <div class="card mb-3">
             <div class="row">
                 <div class="col-md-4">  
                     <% if (campground.images.length > 0 ) { %>
@@ -15,14 +15,24 @@
                     <% } %>
                 </div>
                 <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= campground.title %></h5>
-                        <p class="card-text"><%= campground.description %></p>
-                        <p class="card-text">
-                            <small class="text-muted"><%= campground.location %></small>
-                        </p>
-                        <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>">View <%= campground.title %></a>
-                    </div>   
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= campground.title %></h5>
+                            <p class="card-text"><%= campground.description %></p>
+                            <p class="card-text">
+                                <small class="text-muted"><%= campground.location %></small>
+                            </p>
+                            <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>">View <%= campground.title %></a>
+                        </div>
+                        <div class="card-footer">
+                            <!-- first line of code is to show number of days if it is not 0, if it equal to 0, then hide it-->
+                            <!-- second line of code is if the number is 0, it means Today, if number is 1, show "day", if number bigger than 1, show "days"-->
+                            <small class="text-muted">Created <%= getDifferentDays(Date(), campground.createdAt) == 0 ? "" : getDifferentDays(Date(), campground.createdAt) %> 
+                                <%= getDifferentDays(Date(), campground.createdAt) == 0 ? "Today" : getDifferentDays(Date(), campground.createdAt) == 1 ? "day ago" : "days ago" %>
+                            </small>
+                        
+                        </div>  
+                    </div> 
                 </div>
             </div>
         </div>

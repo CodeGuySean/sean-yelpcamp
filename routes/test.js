@@ -8,5 +8,5 @@ router.get("/test", isLoggedIn, (req, res) => {
     res.render("campgrounds/new");
 });
 
-console.log(isLoggedIn)
+// console.log(isLoggedIn)
 module.exports = router;

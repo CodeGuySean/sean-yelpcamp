@@ -53,7 +53,18 @@
         </div>
         <% } %>
         <div class="card-footer text-muted">
-            2 days ago
+            <!-- To get the campground DB object created and updated date, transform to UTC format and take out Weekday and GMT -->
+            <p>Created at: <%= showCampground.createdAt.toString().substring(4, 21) %></p>
+            <p>Last updated at: <%= showCampground.updatedAt.toString().substring(4, 21) %></p>
+            <%# const date1 = new Date(Date()) %>
+            <%# const date2 = new Date(showCampground.createdAt.toUTCString()) %>
+            <%# const oneDay = 1000 * 60 * 60 * 24 %>
+            <%# differentTime = date1.getTime() - date2.getTime() %>
+            <%# differentDays = Math.round(differentTime / oneDay) %>
+            <!-- Call the function getDifferentDays which is from controllers/campgrounds.js rendered to this EJS file -->    
+            <p>Created <%= getDifferentDays(Date(), showCampground.createdAt) == 0 ? "" : getDifferentDays(Date(), showCampground.createdAt) %> 
+                   <%= getDifferentDays(Date(), showCampground.createdAt) == 0 ? "Today" : getDifferentDays(Date(), showCampground.createdAt) == 1 ? "day ago" : "days ago" %>
+            </p>
           </div>
         </div>
     </div>
@@ -99,6 +110,11 @@
                                 <!-- Rated: 3 stars -->
                             </p>
                             <h6 class="card-subtitle mb-2 text-muted">Posted by <%= review.author.username %></h6>
+                            <p class="card-subtitle mb-2 text-muted">Created at: <%= review.createdAt.toString().substring(4, 21) %></p>
+                            <p class="card-subtitle mb-3 text-muted">
+                                Created <%= getDifferentDays(Date(), review.createdAt) == 0 ? "" : getDifferentDays(Date(), review.createdAt) %> 
+                                <%= getDifferentDays(Date(), review.createdAt) == 0 ? "Today" : getDifferentDays(Date(), review.createdAt) == 1 ? "day ago" : "days ago" %>
+                            </p>
                             <p class="card-text">Review: <%= review.body %></p>
                             <% if (currentUser && review.author.equals(currentUser._id)) { %>
                             <form action="/campgrounds/<%= showCampground._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
