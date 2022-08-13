@@ -2,8 +2,8 @@
     <h1>All Campgrounds</h1>
     <div><a href="/campgrounds/new">Add New Campground</a></div>
         <% for (let campground of campgrounds) { %>
-        <div class="card mb-3">
-            <div class="row">
+        <div class="card-group mb-3">
+            <!-- <div class="row"> -->
                 <div class="col-md-4">  
                     <% if (campground.images.length > 0 ) { %>
                         <img class="img-fluid" src="<%= campground.images[0].url %>" alt=""></img>
@@ -14,8 +14,8 @@
                         </div>
                     <% } %>
                 </div>
-                <div class="col-md-8">
-                    <div class="card">
+                <div class="card col-md-8">
+                    <!-- <div class="card"> -->
                         <div class="card-body">
                             <h5 class="card-title"><%= campground.title %></h5>
                             <p class="card-text"><%= campground.description %></p>
@@ -24,7 +24,7 @@
                             </p>
                             <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>">View <%= campground.title %></a>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer border-10">
                             <!-- first line of code is to show number of days if it is not 0, if it equal to 0, then hide it-->
                             <!-- second line of code is if the number is 0, it means Today, if number is 1, show "day", if number bigger than 1, show "days"-->
                             <small class="text-muted">Created <%= getDifferentDays(Date(), campground.createdAt) == 0 ? "" : getDifferentDays(Date(), campground.createdAt) %> 
@@ -32,8 +32,8 @@
                             </small>
                         
                         </div>  
-                    </div> 
+                    <!-- </div>  -->
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
         <% } %>
