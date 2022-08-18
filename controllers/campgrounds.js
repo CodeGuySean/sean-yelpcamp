@@ -29,7 +29,8 @@ function getDifferentDays(nowDate, createDate) {
 }
 
 module.exports.index = async (req, res) => {
-    const campgrounds = await Campground.find({});
+    // sort all the campground by descending order with createdAt date
+    const campgrounds = await Campground.find({}).sort({createdAt:-1});
     res.render("campgrounds/index", { campgrounds, getDifferentDays });
 }
 

@@ -101,7 +101,8 @@
         </form>
         <% } %>
             <h2>Current Review:</h2>
-                <% for (let review of showCampground.reviews) { %>
+                <!-- reverse() mean descending order, so that print the latest date of reviews first -->
+                <% for (let review of showCampground.reviews.reverse()) { %>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h4 class="card-title"><%= review.author.username %></h4>
